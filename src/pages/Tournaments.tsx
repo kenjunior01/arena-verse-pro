@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Trophy, Calendar, Users, DollarSign } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { CreateTournamentDialog } from "@/components/tournaments/CreateTournamentDialog";
 
 interface Tournament {
   id: string;
@@ -97,11 +98,14 @@ const Tournaments = () => {
   return (
     <div className="min-h-screen p-8">
       <div className="container mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Torneios</h1>
-          <p className="text-muted-foreground">
-            Participe de competições épicas e mostre suas habilidades
-          </p>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-4xl font-bold mb-2">Torneios</h1>
+            <p className="text-muted-foreground">
+              Participe de competições épicas e mostre suas habilidades
+            </p>
+          </div>
+          <CreateTournamentDialog onSuccess={fetchTournaments} />
         </div>
 
         {tournaments.length === 0 ? (

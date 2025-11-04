@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Users, Shield, Plus } from "lucide-react";
+import { Users, Shield } from "lucide-react";
+import { CreateTeamDialog } from "@/components/teams/CreateTeamDialog";
 
 interface Team {
   id: string;
@@ -67,10 +68,7 @@ const Teams = () => {
               Encontre e participe dos melhores times de esports
             </p>
           </div>
-          <Button variant="hero" size="lg" className="gap-2">
-            <Plus className="h-5 w-5" />
-            Criar Time
-          </Button>
+          <CreateTeamDialog onSuccess={fetchTeams} />
         </div>
 
         {teams.length === 0 ? (

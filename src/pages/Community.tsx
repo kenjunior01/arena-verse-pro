@@ -1,48 +1,64 @@
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
-import { MessageSquare, Heart, Users } from "lucide-react";
+import { MessageSquare } from "lucide-react";
+import { CreatePostDialog } from "@/components/community/CreatePostDialog";
+import { PostCard } from "@/components/community/PostCard";
 
 const Community = () => {
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const { data } = await supabase
+        .from("posts")
+        .select("*, profiles(username, avatar_url)")
+        .order("created_at", { ascending: false });
+
+      if (data) setPosts(data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen p-8">
       <div className="container mx-auto max-w-4xl">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Comunidade</h1>
-          <p className="text-muted-foreground">
-            Conecte-se com outros jogadores e compartilhe suas experiências
-          </p>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-4xl font-bold mb-2">Comunidade</h1>
+            <p className="text-muted-foreground">
+              Conecte-se com outros jogadores e compartilhe suas experiências
+            </p>
+          </div>
+          <CreatePostDialog onSuccess={fetchPosts} />
         </div>
 
         <div className="grid gap-6">
-          {[1, 2, 3].map((i) => (
-            <Card key={i} className="border-primary/20">
-              <CardContent className="p-6">
-                <div className="flex gap-4">
-                  <div className="h-12 w-12 rounded-full bg-gradient-primary flex items-center justify-center flex-shrink-0">
-                    <Users className="h-6 w-6 text-primary-foreground" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="font-semibold">Jogador {i}</span>
-                      <span className="text-sm text-muted-foreground">há 2 horas</span>
-                    </div>
-                    <p className="text-sm mb-4">
-                      Acabei de ganhar meu primeiro torneio! A final foi incrível, partida super disputada. 🎮🏆
-                    </p>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <button className="flex items-center gap-1 hover:text-primary transition-smooth">
-                        <Heart className="h-4 w-4" />
-                        <span>12</span>
-                      </button>
-                      <button className="flex items-center gap-1 hover:text-primary transition-smooth">
-                        <MessageSquare className="h-4 w-4" />
-                        <span>5</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+          {loading ? (
+            <p>Carregando...</p>
+          ) : posts.length === 0 ? (
+            <Card className="text-center py-12">
+              <CardContent>
+                <MessageSquare className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
+                <h3 className="text-xl font-semibold mb-2">Nenhum post ainda</h3>
+                <p className="text-muted-foreground">
+                  Seja o primeiro a compartilhar algo!
+                </p>
               </CardContent>
             </Card>
-          ))}
+          ) : (
+            posts.map((post) => (
+              <PostCard key={post.id} post={post} onDelete={fetchPosts} />
+            ))
+          )}
         </div>
 
         <Card className="mt-8 text-center py-8 border-primary/20">
