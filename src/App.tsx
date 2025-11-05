@@ -10,6 +10,8 @@ import Tournaments from "./pages/Tournaments";
 import Teams from "./pages/Teams";
 import Community from "./pages/Community";
 import Streams from "./pages/Streams";
+import Profile from "./pages/Profile";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,10 +28,12 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/tournaments" element={<Tournaments />} />
-            <Route path="/teams" element={<Teams />} />
-            <Route path="/community" element={<Community />} />
-            <Route path="/streams" element={<Streams />} />
-            <Route path="*" element={<NotFound />} />
+          <Route path="/teams" element={<Teams />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/streams" element={<Streams />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </BrowserRouter>

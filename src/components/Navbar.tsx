@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Trophy, Users, Gamepad2, TvMinimalPlay, Home } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { NotificationBell } from "@/components/notifications/NotificationBell";
 
 export const Navbar = () => {
   const location = useLocation();
@@ -49,6 +50,7 @@ export const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-2">
+            {user && <NotificationBell />}
             {user ? (
               <>
                 <Link to="/profile">
