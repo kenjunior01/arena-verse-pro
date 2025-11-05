@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -85,11 +86,9 @@ const Teams = () => {
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {teams.map((team) => (
-              <Card
-                key={team.id}
-                className="border-primary/20 hover:border-primary/40 transition-smooth hover:shadow-card cursor-pointer"
-              >
-                <CardHeader>
+              <Link key={team.id} to={`/teams/${team.id}`}>
+                <Card className="border-primary/20 hover:border-primary/40 transition-smooth hover:shadow-card cursor-pointer h-full">
+                  <CardHeader>
                   <div className="flex items-center gap-4">
                     <div className="h-16 w-16 rounded-lg bg-gradient-card flex items-center justify-center border border-primary/20">
                       {team.logo_url ? (
@@ -123,6 +122,7 @@ const Teams = () => {
                   </Button>
                 </CardContent>
               </Card>
+              </Link>
             ))}
           </div>
         )}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -121,11 +122,9 @@ const Tournaments = () => {
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {tournaments.map((tournament) => (
-              <Card
-                key={tournament.id}
-                className="overflow-hidden border-primary/20 hover:border-primary/40 transition-smooth hover:shadow-card"
-              >
-                <div className="relative h-48 bg-gradient-card overflow-hidden">
+              <Link key={tournament.id} to={`/tournaments/${tournament.id}`}>
+                <Card className="overflow-hidden border-primary/20 hover:border-primary/40 transition-smooth hover:shadow-card h-full">
+                  <div className="relative h-48 bg-gradient-card overflow-hidden">
                   {tournament.banner_url ? (
                     <img
                       src={tournament.banner_url}
@@ -173,6 +172,7 @@ const Tournaments = () => {
                   </Button>
                 </CardContent>
               </Card>
+              </Link>
             ))}
           </div>
         )}

@@ -7,7 +7,9 @@ import { Navbar } from "./components/Navbar";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Tournaments from "./pages/Tournaments";
+import TournamentDetail from "./pages/TournamentDetail";
 import Teams from "./pages/Teams";
+import TeamDetail from "./pages/TeamDetail";
 import Community from "./pages/Community";
 import Streams from "./pages/Streams";
 import Profile from "./pages/Profile";
@@ -26,9 +28,11 @@ const App = () => (
           <Navbar />
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/tournaments" element={<Tournaments />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/tournaments" element={<Tournaments />} />
+          <Route path="/tournaments/:id" element={<TournamentDetail />} />
           <Route path="/teams" element={<Teams />} />
+          <Route path="/teams/:id" element={<TeamDetail />} />
           <Route path="/community" element={<Community />} />
           <Route path="/streams" element={<Streams />} />
           <Route path="/profile" element={<Profile />} />
