@@ -13,6 +13,7 @@ import { ptBR } from "date-fns/locale";
 import { MatchManager } from "@/components/matches/MatchManager";
 import { PlayerStatsManager } from "@/components/stats/PlayerStatsManager";
 import { ChatBox } from "@/components/chat/ChatBox";
+import { PaymentDialog } from "@/components/payments/PaymentDialog";
 import { toast } from "sonner";
 
 interface Tournament {
@@ -40,6 +41,7 @@ export default function TournamentDetail() {
   const [chatId, setChatId] = useState<string | null>(null);
   const [isOrganizer, setIsOrganizer] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
+  const [hasPaid, setHasPaid] = useState(false);
   const [userTeams, setUserTeams] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -81,6 +83,21 @@ export default function TournamentDetail() {
             .in("team_id", teamIds);
 
           setIsRegistered(!!registrations && registrations.length > 0);
+
+          // Check payment status
+          if (tournamentData?.entry_fee && tournamentData.entry_fee > 0) {
+            const { data: paymentData } = await supabase
+              .from("payments")
+              .select("*")
+              .eq("tournament_id", id)
+              .eq("user_id", user.id)
+              .eq("status", "completed")
+              .single();
+
+            setHasPaid(!!paymentData);
+          } else {
+            setHasPaid(true); // No payment required
+          }
         }
       }
 
@@ -200,7 +217,19 @@ export default function TournamentDetail() {
                   ))}
                 </div>
               )}
-              {isRegistered && (
+              {isRegistered && !hasPaid && tournament.entry_fee && tournament.entry_fee > 0 && (
+                <PaymentDialog
+                  tournamentId={tournament.id}
+                  amount={tournament.entry_fee}
+                  onSuccess={fetchTournamentDetails}
+                />
+              )}
+              {isRegistered && hasPaid && (
+                <Badge variant="outline" className="text-lg px-4 py-2">
+                  ✓ Inscrito e Pago
+                </Badge>
+              )}
+              {isRegistered && !tournament.entry_fee && (
                 <Badge variant="outline" className="text-lg px-4 py-2">
                   ✓ Inscrito
                 </Badge>
