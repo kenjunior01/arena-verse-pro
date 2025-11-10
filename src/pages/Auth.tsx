@@ -47,6 +47,9 @@ const Auth = () => {
           <CardDescription>
             Registre-se como jogador e participe de torneios épicos
           </CardDescription>
+          <CardDescription className="text-xs text-muted-foreground mt-3 px-4">
+            <strong>Conta Admin:</strong> admin@bellvion.store (senha: Bellvion2025)
+          </CardDescription>
           <CardDescription className="flex items-center justify-center gap-2 mt-2">
             <a
               href="https://chat.whatsapp.com/seu-link-aqui"

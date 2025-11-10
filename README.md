@@ -7,8 +7,10 @@
 ## 🔑 Configuração de Administrador
 
 ### Conta Admin Padrão
-- **Email**: adminmz
+- **Email**: admin@bellvion.store
 - **Senha**: Bellvion2025
+
+⚠️ **Esta conta será criada automaticamente com privilégios de admin ao se registrar**
 
 ⚠️ **IMPORTANTE**: Esta conta tem permissões especiais:
 - ✅ Criar torneios
