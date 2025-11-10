@@ -54,12 +54,22 @@ const Index = () => {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Bem-vindo à
               <span className="block bg-gradient-primary bg-clip-text text-transparent">
-                Esports Arena
+                BELLVION Games
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8">
               A plataforma definitiva para competições de esports. Participe de torneios, monte seu time e mostre suas habilidades.
             </p>
+            <div className="flex items-center gap-2 mb-6 text-lg">
+              <a
+                href="https://chat.whatsapp.com/seu-link-aqui"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline flex items-center gap-2"
+              >
+                📱 Junte-se ao nosso grupo do WhatsApp
+              </a>
+            </div>
             <div className="flex flex-wrap gap-4">
               <Link to="/auth">
                 <Button variant="hero" size="xl" className="gap-2">

@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TvMinimalPlay, Eye } from "lucide-react";
 import { AddStreamDialog } from "@/components/streams/AddStreamDialog";
+import { useUserRoles } from "@/hooks/useUserRoles";
 
 const Streams = () => {
-  const { user } = useAuth();
   const [streams, setStreams] = useState<any[]>([]);
+  const { canAddStreams } = useUserRoles();
 
   useEffect(() => {
     fetchStreams();
@@ -33,7 +33,7 @@ const Streams = () => {
               Assista às melhores partidas e transmissões dos torneios
             </p>
           </div>
-          {user && <AddStreamDialog onSuccess={fetchStreams} />}
+          {canAddStreams && <AddStreamDialog onSuccess={fetchStreams} />}
         </div>
 
         {streams.length === 0 ? (

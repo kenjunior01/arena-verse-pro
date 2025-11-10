@@ -8,6 +8,7 @@ import { Trophy, Calendar, Users, DollarSign } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { CreateTournamentDialog } from "@/components/tournaments/CreateTournamentDialog";
+import { useUserRoles } from "@/hooks/useUserRoles";
 
 interface Tournament {
   id: string;
@@ -27,6 +28,7 @@ interface Tournament {
 const Tournaments = () => {
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [loading, setLoading] = useState(true);
+  const { canCreateTournaments } = useUserRoles();
 
   useEffect(() => {
     fetchTournaments();
@@ -106,7 +108,7 @@ const Tournaments = () => {
               Participe de competições épicas e mostre suas habilidades
             </p>
           </div>
-          <CreateTournamentDialog onSuccess={fetchTournaments} />
+          {canCreateTournaments && <CreateTournamentDialog onSuccess={fetchTournaments} />}
         </div>
 
         {tournaments.length === 0 ? (

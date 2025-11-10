@@ -42,10 +42,20 @@ const Auth = () => {
             </div>
           </div>
           <CardTitle className="text-2xl bg-gradient-primary bg-clip-text text-transparent">
-            Esports Arena
+            BELLVION Games
           </CardTitle>
           <CardDescription>
-            Entre na arena e mostre suas habilidades
+            Registre-se como jogador e participe de torneios épicos
+          </CardDescription>
+          <CardDescription className="flex items-center justify-center gap-2 mt-2">
+            <a
+              href="https://chat.whatsapp.com/seu-link-aqui"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline text-sm flex items-center gap-1"
+            >
+              📱 Junte-se ao grupo do WhatsApp
+            </a>
           </CardDescription>
         </CardHeader>
         <CardContent>

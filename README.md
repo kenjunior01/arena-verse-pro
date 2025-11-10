@@ -1,4 +1,51 @@
-# Welcome to your Lovable project
+# BELLVION Games - Plataforma de Esports
+
+## 🎮 Sobre o Projeto
+
+**BELLVION Games** é uma plataforma completa para competições de esports, permitindo a criação e gestão de torneios, equipes, transmissões ao vivo e muito mais.
+
+## 🔑 Configuração de Administrador
+
+### Conta Admin Padrão
+- **Email**: adminmz
+- **Senha**: Bellvion2025
+
+⚠️ **IMPORTANTE**: Esta conta tem permissões especiais:
+- ✅ Criar torneios
+- ✅ Adicionar transmissões ao vivo
+- ✅ Gerenciar usuários e roles no painel admin
+- ✅ Atualizar classificações e placares
+- ✅ Gerenciar estatísticas de jogadores
+
+### Outras Contas
+Todos os outros usuários registrados são automaticamente **jogadores** e podem:
+- ✅ Criar equipes
+- ✅ Participar de torneios
+- ✅ Ver transmissões
+- ✅ Interagir na comunidade
+- ❌ **NÃO podem** criar torneios ou adicionar streams
+
+## 📱 Grupo do WhatsApp
+
+Para fazer parte da comunidade, atualize o link do WhatsApp nos seguintes arquivos:
+- `src/pages/Auth.tsx` (linha 54)
+- `src/pages/Index.tsx` (linha 66)
+- `src/components/Footer.tsx` (linha 16)
+
+Substitua `https://chat.whatsapp.com/seu-link-aqui` pelo link real do grupo.
+
+## 🏆 Funcionalidades
+
+- **Torneios**: Sistema completo de criação e gestão de torneios
+- **Equipes**: Criação de times, convites e gestão de membros
+- **Partidas**: Registro de resultados, placares e estatísticas
+- **Estatísticas**: KDA, vitórias, derrotas por jogador
+- **Chat**: Sistema de chat em tempo real para torneios e equipes
+- **Lives**: Transmissões ao vivo integradas (YouTube e Twitch)
+- **Comunidade**: Posts, comentários e curtidas
+- **Notificações**: Sistema de notificações em tempo real
+- **Pagamentos**: Processamento de taxas de inscrição (integrado)
+- **Painel Admin**: Gestão completa de usuários, roles e plataforma
 
 ## Project info
 
